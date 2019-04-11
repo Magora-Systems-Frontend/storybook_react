@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Icon from './Icon';
+import { withOptions } from '../../../../common/withOptions';
+import * as AllProps from './_DATA';
 
 class SuggestedIcons extends Component {
   render() {
@@ -38,8 +40,38 @@ class SuggestedIcons extends Component {
       'check-square-o',
       'clock-circle-o',
       'clock-circle',
-      'warning'
+      'warning',
     ];
+    return (
+      <section className="example">
+        <h3 className="title">Suggested Icons</h3>
+        <section className="icons">
+          {icons.map((icon, i) => (
+            <Icon key={i} icon={icon} />
+          ))}
+        </section>
+      </section>
+    );
+  }
+}
+
+export default withOptions(
+  SuggestedIcons,
+  AllProps,
+  `import React, { Component, Fragment } from 'react';
+import { Icon } from 'antd';
+
+const IconItem = ({icon}) => (
+  <div className="icon">
+    <Icon type={icon} />
+    <br />
+    <span>{icon}</span>
+  </div>
+)
+
+class SuggestedIcons extends Component {
+  render() {
+    const icons: string[] = ['icon1', 'icon2', '...'];
     return (
       <Fragment>
         <h3 className="title">Suggested Icons</h3>
@@ -51,6 +83,5 @@ class SuggestedIcons extends Component {
       </Fragment>
     );
   }
-}
-
-export default SuggestedIcons;
+}`,
+);

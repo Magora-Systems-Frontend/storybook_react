@@ -18,42 +18,20 @@ class ButtonPage extends Component {
         <h2 className="title">When to use</h2>
 
         <p className="text">
-          A button means an operation (or a series of operations). Clicking a button will trigger corresponding business logic.
+          A button means an operation (or a series of operations). Clicking a button will trigger
+          corresponding business logic.
         </p>
 
         <h2 className="title">Exemples:</h2>
 
-        <section className="example">
-          <Type />
-        </section>
-
-        <section className="example">
-          <Icon />
-        </section>
-
-        <section className="example">
-          <Size />
-        </section>
-
-        <section className="example">
-          <Disabled />
-        </section>
-
-        <section className="example">
-          <Loading />
-        </section>
-
-        <section className="example">
-          <Multiple />
-        </section>
-
-        <section className="example">
-          <Group />
-        </section>
-
-        <section className="example">
-          <Ghost />
-        </section>
+        <Type />
+        <Icon />
+        <Size />
+        <Disabled />
+        <Loading />
+        <Multiple />
+        <Group />
+        <Ghost />
       </Fragment>
     );
   }

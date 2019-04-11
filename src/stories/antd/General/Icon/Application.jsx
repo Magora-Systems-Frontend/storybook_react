@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Icon from './Icon';
+import { withOptions } from '../../../../common/withOptions';
+import * as AllProps from './_DATA';
 
 class Application extends Component {
   render() {
@@ -154,19 +156,48 @@ class Application extends Component {
       'dashboard',
       'form',
       'table',
-      'profile'
+      'profile',
     ];
+    return (
+      <section className="example">
+        <h3 className="title">Application Icons</h3>
+        <section className="icons">
+          {icons.map((icon, i) => (
+            <Icon key={i} icon={icon} />
+          ))}
+        </section>
+      </section>
+    );
+  }
+}
+
+export default withOptions(
+  Application,
+  AllProps,
+  `import React, { Component, Fragment } from 'react';
+import { Icon } from 'antd';
+
+const IconItem = ({icon}) => (
+  <div className="icon">
+    <Icon type={icon} />
+    <br />
+    <span>{icon}</span>
+  </div>
+)
+
+class Application extends Component {
+  render() {
+    const icons: string[] = ['icon1', 'icon2', '...'];
     return (
       <Fragment>
         <h3 className="title">Application Icons</h3>
         <section className="icons">
           {
-            icons.map((icon, i) => <Icon key={i} icon={icon} />)
+            icons.map((icon, i) => <IconItem key={i} icon={icon} />)
           }
         </section>
       </Fragment>
     );
   }
-}
-
-export default Application;
+}`,
+);

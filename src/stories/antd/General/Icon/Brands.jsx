@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Icon from './Icon';
+import { withOptions } from '../../../../common/withOptions';
+import * as AllProps from './_DATA';
 
 class Brands extends Component {
   render() {
@@ -41,8 +43,38 @@ class Brands extends Component {
       'google',
       'codepen-circle',
       'alipay',
-      'ant-design'
+      'ant-design',
     ];
+    return (
+      <section className="example">
+        <h3 className="title">Brand and Logos</h3>
+        <section className="icons">
+          {icons.map((icon, i) => (
+            <Icon key={i} icon={icon} />
+          ))}
+        </section>
+      </section>
+    );
+  }
+}
+
+export default withOptions(
+  Brands,
+  AllProps,
+  `import React, { Component, Fragment } from 'react';
+import { Icon } from 'antd';
+
+const IconItem = ({icon}) => (
+  <div className="icon">
+    <Icon type={icon} />
+    <br />
+    <span>{icon}</span>
+  </div>
+)
+
+class Brands extends Component {
+  render() {
+    const icons: string[] = ['icon1', 'icon2', '...'];
     return (
       <Fragment>
         <h3 className="title">Brand and Logos</h3>
@@ -54,6 +86,5 @@ class Brands extends Component {
       </Fragment>
     );
   }
-}
-
-export default Brands;
+}`,
+);

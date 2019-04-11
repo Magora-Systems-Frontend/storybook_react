@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Ic from './Icon';
+import { withOptions } from '../../../../common/withOptions';
+import * as AllProps from './_DATA';
 
 class DirectionalIcons extends Component {
   render() {
@@ -55,8 +57,39 @@ class DirectionalIcons extends Component {
       'login',
       'logout',
       'menu-fold',
-      'menu-unfold'
+      'menu-unfold',
     ];
+
+    return (
+      <section className="example">
+        <h3 className="title">Directional Icons</h3>
+        <section className="icons ml20">
+          {icons.map((icon, i) => (
+            <Ic key={i} icon={icon} />
+          ))}
+        </section>
+      </section>
+    );
+  }
+}
+
+export default withOptions(
+  DirectionalIcons,
+  AllProps,
+  `import React, { Component, Fragment } from 'react';
+import { Icon } from 'antd';
+
+const IconItem = ({icon}) => (
+  <div className="icon">
+    <Icon type={icon} />
+    <br />
+    <span>{icon}</span>
+  </div>
+)
+
+class DirectionalIcons extends Component {
+  render() {
+    const icons: string[] = ['icon1', 'icon2', '...'];
 
     return (
       <Fragment>
@@ -69,6 +102,5 @@ class DirectionalIcons extends Component {
       </Fragment>
     );
   }
-}
-
-export default DirectionalIcons;
+}`,
+);
