@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Steps } from 'antd';
 import 'antd/lib/steps/style';
+import { withOptions } from '../../../../common/withOptions';
+import * as AllProps from './_DATA';
 
 class Basic extends Component {
   render() {
@@ -18,4 +20,26 @@ class Basic extends Component {
   }
 }
 
-export default Basic;
+export default withOptions(
+  Basic,
+  AllProps,
+  `import React, { Component } from 'react';
+import { Steps } from 'antd';
+import 'antd/lib/steps/style';
+
+class Basic extends Component {
+  render() {
+    const Step = Steps.Step;
+    return (
+      <section className="example">
+        <h3 className="ex-title">Basic steps</h3>
+        <Steps current={1}>
+          <Step title="Finished" description="This is a description." />
+          <Step title="In Progress" description="This is a description." />
+          <Step title="Waiting" description="This is a description." />
+        </Steps>
+      </section>
+    );
+  }
+}`,
+);

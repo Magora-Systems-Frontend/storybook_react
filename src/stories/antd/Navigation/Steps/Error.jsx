@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Steps } from 'antd';
 import 'antd/lib/steps/style';
+import { withOptions } from '../../../../common/withOptions';
+import * as AllProps from './_DATA';
 
 class Error extends Component {
   render() {
@@ -18,4 +20,26 @@ class Error extends Component {
   }
 }
 
-export default Error;
+export default withOptions(
+  Error,
+  AllProps,
+  `import React, { Component } from 'react';
+import { Steps } from 'antd';
+import 'antd/lib/steps/style';
+
+class Error extends Component {
+  render() {
+    const Step = Steps.Step;
+    return (
+      <section className="example">
+        <h3 className="ex-title">Error Status</h3>
+        <Steps current={1} status="error">
+          <Step title="Finished" description="This is a description" />
+          <Step title="In Process" description="This is a description" />
+          <Step title="Waiting" description="This is a description" />
+        </Steps>
+      </section>
+    );
+  }
+}`,
+);
