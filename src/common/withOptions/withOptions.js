@@ -1,48 +1,44 @@
-import React from 'react';
-import { Button, Icon, ButtonGroup } from 'antd';
+import React, { useState } from 'react';
+import { Button, Icon } from 'antd';
 import PropsModal from './PropsModal';
 import HighlightedSourceCode from './HighlightedSourceCode';
 
-export default (Component, dataProps, code) =>
-  class WithOptions extends React.Component {
-    state = {
-      propsModal: false,
-      sourceCode: false,
-    };
-    toggle = value => {
-      this.setState({ [value]: !this.state[value] });
-    };
+export default (Component, dataProps, code) => {
+  const WithOptions = () => {
+    const [propsModal, setPropsModal] = useState(false);
+    const [sourceCode, setSourceCode] = useState(false);
 
-    render() {
-      const { sourceCode, propsModal } = this.state;
-      return (
-        <>
-          <Component />
-          <section className="options">
-            <Button.Group>
-              <Button
-                onClick={() => this.toggle('propsModal')}
-                style={{ fontSize: 16 }}
-              >
-                <Icon type="setting" theme="filled" />
-              </Button>
-              <Button
-                onClick={() => this.toggle('sourceCode')}
-                style={{ fontSize: 16 }}
-              >
-                <Icon type="code" theme="filled" />
-              </Button>
-            </Button.Group>
+    return (
+      <>
+        <Component />
+        <section className="options">
+          <Button.Group>
+            <Button
+              onClick={() => setPropsModal(prevPropsModal => !prevPropsModal)}
+              style={{ fontSize: 16 }}
+            >
+              <Icon type="setting" theme="filled" />
+            </Button>
+            <Button
+              onClick={() => setSourceCode(prevSourceCode => !prevSourceCode)}
+              style={{ fontSize: 16 }}
+            >
+              <Icon type="code" theme="filled" />
+            </Button>
+          </Button.Group>
 
+          {propsModal && (
             <PropsModal
               dataProps={dataProps}
               propsModal={propsModal}
-              toggle={() => this.toggle('propsModal')}
+              toggle={() => setPropsModal(prevPropsModal => !prevPropsModal)}
             />
+          )}
 
-            {sourceCode && <HighlightedSourceCode code={code} />}
-          </section>
-        </>
-      );
-    }
+          {sourceCode && <HighlightedSourceCode code={code} />}
+        </section>
+      </>
+    );
   };
+  return WithOptions;
+};

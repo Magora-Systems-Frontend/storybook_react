@@ -1,23 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import Prism from 'prismjs';
 import PrismJsx from 'prismjs/components/prism-jsx.min';
 
-class HighlightedSourceCode extends React.Component {
-  componentDidMount() {
+const HighlightedSourceCode = ({ code }) => {
+  useLayoutEffect(() => {
     Prism.highlightAll();
-  }
+  });
 
-  componentDidUpdate() {
-    Prism.highlightAll();
-  }
-
-  render() {
-    return (
-      <pre>
-        <code className="language-jsx">{this.props.code}</code>
-      </pre>
-    );
-  }
-}
+  return (
+    <pre>
+      <code className="language-jsx">{code}</code>
+    </pre>
+  );
+};
 
 export default HighlightedSourceCode;
